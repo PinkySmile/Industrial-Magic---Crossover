@@ -70,7 +70,6 @@ public class ItemInfusedQuantumChestplate extends ItemArmorElectric implements I
             return emt.TEXTURE_PATH+":textures/models/armor/quantumarmor_quantum.png";
         }
         if(stack.getItem()==EMTItems.quantumarmor_thaumium){
-
             return emt.TEXTURE_PATH+":textures/models/armor/quantumarmor_thaumium.png";
         }
 
@@ -97,6 +96,7 @@ public class ItemInfusedQuantumChestplate extends ItemArmorElectric implements I
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entity, ItemStack stack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
+        // TODO:
         try {
             if (entity instanceof EntityPlayer) {
                 if (stack.getItem()==EMTItems.quantumarmor_jetpack) {
@@ -112,7 +112,8 @@ public class ItemInfusedQuantumChestplate extends ItemArmorElectric implements I
         } catch (NullPointerException e) {
             new ModelSpecialArmor(1, 0);
         }
-        return new ModelSpecialArmor(1, 0);    }
+        return new ModelSpecialArmor(1, 0);
+    }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
@@ -199,10 +200,10 @@ public class ItemInfusedQuantumChestplate extends ItemArmorElectric implements I
                             ElectricItem.manager.charge(charged, 0, 1, true, false);
                         player.inventory.setInventorySlotContents(player.inventory.currentItem, charged);
                     }
-                        if(currentItem==EMTItems.quantumarmor_thaumium){
-                            IC2.platform.messagePlayer(player, "Thaumium wings disabled.", new Object[0]);
-                            player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(EMTItems.thaumiumwing));
-                        }
+                    if(currentItem==EMTItems.quantumarmor_thaumium){
+                        IC2.platform.messagePlayer(player, "Thaumium wings disabled.", new Object[0]);
+                        player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(EMTItems.thaumiumwing));
+                    }
                     if(currentItem==EMTItems.quantumarmor_nano){
                         IC2.platform.messagePlayer(player, "Nano wings disabled.", new Object[0]);
                         ItemStack charged = new ItemStack(EMTItems.nanowing);

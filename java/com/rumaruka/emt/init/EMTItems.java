@@ -6,6 +6,7 @@ import com.rumaruka.emt.item.ItemElectricScribingTools;
 import com.rumaruka.emt.item.ItemIC2Baubles;
 import com.rumaruka.emt.item.ItemMaterials;
 import com.rumaruka.emt.item.ItemOneRing;
+import com.rumaruka.emt.item.armor.ItemInfusedQuantumChestplate;
 import com.rumaruka.emt.item.armor.boots.ItemElectricBootsTraveller;
 import com.rumaruka.emt.item.armor.boots.ItemNanoBootsTraveller;
 import com.rumaruka.emt.item.armor.boots.ItemQuantumBootsTraveller;
@@ -71,6 +72,12 @@ public class EMTItems {
     public static Item materials_thaumiumwing;
     public static Item materials_uumatterdrop;
 
+    public static Item quantumarmor;
+    public static Item quantumarmor_nano;
+    public static Item quantumarmor_jetpack;
+    public static Item quantumarmor_quantum;
+    public static Item quantumarmor_thaumium;
+
     public static Item electricgoggles;
     public static Item nanogoggles;
     public static Item quantumgoggles;
@@ -87,7 +94,7 @@ public class EMTItems {
 
     public static void init() {
         onering = new ItemOneRing().setUnlocalizedName("onering").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
-              ironomnitool = new ItemIronOmniTool().setUnlocalizedName("ironomnitool").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
+        ironomnitool = new ItemIronOmniTool().setUnlocalizedName("ironomnitool").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
         diamondomnitool = new ItemDiamondOmniTool().setUnlocalizedName("diamondomnitool").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
         thaumiumomnitool = new ItemThaumiumOmniTool().setUnlocalizedName("thaumiumomnitool").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
 
@@ -134,6 +141,13 @@ public class EMTItems {
         nanogoggles = new ItemNanoGoggles(ItemArmor.ArmorMaterial.DIAMOND,3,EntityEquipmentSlot.HEAD).setUnlocalizedName("nanogoggles").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
         quantumgoggles = new ItemQuantumGoggles(ItemArmor.ArmorMaterial.DIAMOND,3,EntityEquipmentSlot.HEAD).setUnlocalizedName("quantumgoggles").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
         solarhelmetrevealing = new ItemSolarHelmetRevealing(ItemArmor.ArmorMaterial.DIAMOND,3,EntityEquipmentSlot.HEAD).setUnlocalizedName("solarhelmetrevealing").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
+
+        // TODO:
+        quantumarmor = new ItemInfusedQuantumChestplate("DUMMY", 0, 0, 0);
+        quantumarmor_nano = new ItemInfusedQuantumChestplate("DUMMY", 0, 0, 0);
+        quantumarmor_jetpack = new ItemInfusedQuantumChestplate("DUMMY", 0, 0, 0);
+        quantumarmor_quantum = new ItemInfusedQuantumChestplate("DUMMY", 0, 0, 0);
+        quantumarmor_thaumium = new ItemInfusedQuantumChestplate("DUMMY", 0, 0, 0);
 
         emtbaubles_armor = new ItemIC2Baubles().setUnlocalizedName("emtbaubles_armor").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
         emtbaubles_inventory = new ItemIC2Baubles().setUnlocalizedName("emtbaubles_inventory").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);

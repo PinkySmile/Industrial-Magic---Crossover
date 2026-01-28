@@ -19,6 +19,16 @@ sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse t
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
+sourceSets {
+    main {
+        java {
+            srcDir 'java'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
 
 minecraft {
     version = "1.12.2-14.23.5.2847"
@@ -37,12 +47,23 @@ repositories {
         name = "ic2"
         url = "http://maven.ic2.player.to/"
     }
+    maven {
+        name = "CurseMaven"
+        url = "https://www.cursemaven.com"
+    }
     
 }
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile  'net.industrial-craft:industrialcraft-2:2.8.221-ex112:dev'
     compile  'net.industrial-craft:industrialcraft-2:2.8.221-ex112:api'
+
+    // Thaumcraft 6 (Project ID: 223628, File ID for 6.1.BETA26: 2629023)
+    deobfCompile "curse.maven:thaumcraft-223628:2629023"
+
+    // Baubles (Required by Thaumcraft - Project ID: 227083, File ID: 2518667)
+    deobfCompile "curse.maven:baubles-227083:2518667"
+
    // runtime "net.industrial-craft:industrialcraft-2:2.8.197-ex112:api"
 
 }

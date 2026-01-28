@@ -136,36 +136,71 @@ research_name.emt:emt=Electro-Magic Tools aka Industrial Magic
 research_stage.emt:emt.1=Magic and Industrial? It`s possible?
 research_stage.emt:emt.2=Yep, it`s working, so!! What I do with research?
 
-research_name.emt:wings_b=Start for wings
-research_stage.emt:wings_b.1=I make new material for wings
+research_name.emt:wings_b=Start for Wings
+research_stage.emt:wings_b.1=I make new material for wings.
 research_stage.emt:wings_b.2=Yes, I`m write recipe and I make wings!
+
 research_name.emt:wings=WINGS!
-research_stage.emt:wings.1=Im pilot! (Recipe begin wings)
-research_stage.emt:wings.2=Im make new type wings
+research_stage.emt:wings.1=I'm pilot! (Recipe begin wings).
+research_stage.emt:wings.2=I'm make new type wings.
+
 research_name.emt:armor=Armor and YOU!
-research_stage.emt:armor.1=New type armor
-research_stage.emt:armor.2=WIP PAGE!
+research_stage.emt:armor.1=New Type Armor.
+research_stage.emt:armor.2=Look at me! I'm the Industriknight!
+
+
+//research_name.emt:tools=
+//research_stage.emt:tools.1=
+//research_stage.emt:tools.2=
+//research_name.emt:solar=
+//research_stage.emt:solar.1=
+//research_stage.emt:solar.2=
+//research_name.emt:solar_f=
+//research_stage.emt:solar_f.1=
+//research_stage.emt:solar_f.2=
+//research_name.emt:solar_o=
+//research_stage.emt:solar_o.1=
+//research_stage.emt:solar_o.2=
+//research_name.emt:solar_w=
+//research_stage.emt:solar_w.1=
+//research_stage.emt:solar_w.2=
+//research_name.emt:solar_a=
+//research_stage.emt:solar_a.1=
+//research_stage.emt:solar_a.2=
+//research_name.emt:solar_e=
+//research_stage.emt:solar_e.1=
+//research_stage.emt:solar_e.2=
+//research_name.emt:solar_en=
+//research_stage.emt:solar_en.1=
+//research_stage.emt:solar_en.2=
+//research_name.emt:creator=
+//research_stage.emt:creator.1=
+//research_stage.emt:emt1.2=
+//research_name.emt:creator_all=
+//research_stage.emt:creatorall.1=
+//research_stage.emt:creator_all.2=
+//research_stage.emt:emt2.2=
 
 research_name.emt:generator=Generator and Aspects
-research_stage.emt:generator.1=Maybe I make new mechinism?
-research_stage.emt:generator.2=Yes, It`s done and
-
+research_stage.emt:g.1=What about a new mechinism?<BR>Energy is a fundamental resource when working with industrial machinery. Potentia sounds as the perfect aspect to provide energy using magic, of course. I should start here to explore the true energistic potential of aspects.
+research_stage.emt:generator.2=Yes, It's done and now, I can try out generate energy with Aspects.
 
 research_name.emt:generator_a=Generator and Aer
 research_stage.emt:ga.1=I continue to experiment with aspects!
-research_stage.emt:ga.2=Yes, It`s done. I can generated energy with Aer Aspect
+research_stage.emt:ga.2=Yes, It's done. I can generated energy with Aer Aspect.
 
 research_name.emt:generator_f=Generator and Fire
 research_stage.emt:gf.1=I continue to experiment with aspects!
-research_stage.emt:gf.2=Yes, It`s done. I can generated energy with Ignis Aspect
+research_stage.emt:gf.2=Yes, It's done. I can generated energy with Ignis Aspect.
 
 research_name.emt:generator_aur=Generator and Aura
 research_stage.emt:gaur.1=I continue to experiment with aspects!
-research_stage.emt:gaur.2=Yes, It`s done. I can generated energy with Auram Aspect
+research_stage.emt:gaur.2=Yes, It's done. I can generated energy with Auram Aspect
 
 research_name.emt:uu=Crystallization UU-mater
 research_stage.emt:uu.1=So if i ...
-research_stage.emt:uu.2=Wow, I foung new recipe with UU-mater
+research_stage.emt:uu.2=Wow, I found new recipe with UU-mater.
+
 research_name.emt:uu_m=Crystall UU
 research_stage.emt:uu_m.1=O.O?
-research_stage.emt:uu_m.2=ow, I foung new recipe with UU-mater
+research_stage.emt:uu_m.2=Wow, I found new recipe with UU-mater.

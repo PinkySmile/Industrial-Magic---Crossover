@@ -46,9 +46,8 @@ public class ItemInfusedQuantumChestplate extends ItemArmorElectric implements I
 
 
     private final String armorName;
-    public ItemInfusedQuantumChestplate(String armorName, double maxCharge, double transferLimit, int tier){
-
-        super(null, null, EntityEquipmentSlot.CHEST, maxCharge, transferLimit, tier);
+    public ItemInfusedQuantumChestplate(String armorName){
+        super(null, null, EntityEquipmentSlot.CHEST, 10000000, 12000, 3);
         this.armorName=armorName;
         this.setMaxDamage(27);
     }

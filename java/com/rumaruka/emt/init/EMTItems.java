@@ -142,16 +142,15 @@ public class EMTItems {
         quantumgoggles = new ItemQuantumGoggles(ItemArmor.ArmorMaterial.DIAMOND,3,EntityEquipmentSlot.HEAD).setUnlocalizedName("quantumgoggles").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
         solarhelmetrevealing = new ItemSolarHelmetRevealing(ItemArmor.ArmorMaterial.DIAMOND,3,EntityEquipmentSlot.HEAD).setUnlocalizedName("solarhelmetrevealing").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
 
-        // TODO:
-        quantumarmor = new ItemInfusedQuantumChestplate("DUMMY", 0, 0, 0);
-        quantumarmor_nano = new ItemInfusedQuantumChestplate("DUMMY", 0, 0, 0);
-        quantumarmor_jetpack = new ItemInfusedQuantumChestplate("DUMMY", 0, 0, 0);
-        quantumarmor_quantum = new ItemInfusedQuantumChestplate("DUMMY", 0, 0, 0);
-        quantumarmor_thaumium = new ItemInfusedQuantumChestplate("DUMMY", 0, 0, 0);
+        quantumarmor = new ItemInfusedQuantumChestplate("infusedquantum").setUnlocalizedName("quantumarmor").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
+        quantumarmor_nano = new ItemInfusedQuantumChestplate("infusedquantum_nano").setUnlocalizedName("quantumarmornano").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
+        quantumarmor_jetpack = new ItemInfusedQuantumChestplate("infusedquantum_jetpack").setUnlocalizedName("quantumarmorjetpack").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
+        quantumarmor_quantum = new ItemInfusedQuantumChestplate("infusedquantum_quantum").setUnlocalizedName("quantumarmorquantum").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
+        quantumarmor_thaumium = new ItemInfusedQuantumChestplate("infusedquantum_thaumium").setUnlocalizedName("quantumarmorthaumium").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
 
         emtbaubles_armor = new ItemIC2Baubles().setUnlocalizedName("emtbaubles_armor").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
         emtbaubles_inventory = new ItemIC2Baubles().setUnlocalizedName("emtbaubles_inventory").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
-        electricscribingtools = new ItemElectricScribingTools( ).setUnlocalizedName("electricscribingtools").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
+        electricscribingtools = new ItemElectricScribingTools().setUnlocalizedName("electricscribingtools").setCreativeTab(EMTCreativeTabs.EMT_CREATIVEtabs);
     }
 
 
@@ -193,6 +192,12 @@ public class EMTItems {
         EMTItems.registerItem(electricbootstraveller, electricbootstraveller.getUnlocalizedName().substring(5));
         EMTItems.registerItem(nanobootstraveller, nanobootstraveller.getUnlocalizedName().substring(5));
         EMTItems.registerItem(quantumbootstraveller, quantumbootstraveller.getUnlocalizedName().substring(5));
+
+        EMTItems.registerItem(quantumarmor, quantumarmor.getUnlocalizedName().substring(5));
+        EMTItems.registerItem(quantumarmor_nano, quantumarmor_nano.getUnlocalizedName().substring(5));
+        EMTItems.registerItem(quantumarmor_jetpack, quantumarmor_jetpack.getUnlocalizedName().substring(5));
+        EMTItems.registerItem(quantumarmor_quantum, quantumarmor_quantum.getUnlocalizedName().substring(5));
+        EMTItems.registerItem(quantumarmor_thaumium, quantumarmor_thaumium.getUnlocalizedName().substring(5));
 
         EMTItems.registerItem(electricgoggles, electricgoggles.getUnlocalizedName().substring(5));
         EMTItems.registerItem(nanogoggles, nanogoggles.getUnlocalizedName().substring(5));

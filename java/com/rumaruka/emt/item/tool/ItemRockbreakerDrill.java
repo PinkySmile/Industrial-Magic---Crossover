@@ -23,115 +23,118 @@ import net.minecraftforge.common.ForgeHooks;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.BlockUtils;
 
-import thaumcraft.common.lib.utils.EntityUtils;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Objects;
 
-
 public class ItemRockbreakerDrill extends ItemThaumiumDrill {
-    private static final Block[] isEffective = { Blocks.NETHER_BRICK, Blocks.NETHERRACK, Blocks.GLOWSTONE, Blocks.IRON_BLOCK, Blocks.GOLD_BLOCK, Blocks.DIAMOND_BLOCK, Blocks.LAPIS_BLOCK, Blocks.REDSTONE_BLOCK, Blocks.REDSTONE_ORE, Blocks.EMERALD_ORE, Blocks.EMERALD_ORE, Blocks.STONEBRICK, Blocks.GLASS, Blocks.STONE, Blocks.GOLD_ORE, Blocks.IRON_ORE, Blocks.COAL_ORE, Blocks.COBBLESTONE,
-            Blocks.DIAMOND_ORE, Blocks.LAPIS_ORE, Blocks.DIRT, Blocks.GRAVEL, Blocks.SAND, Blocks.SANDSTONE, Blocks.SOUL_SAND, Blocks.CLAY, Blocks.GRASS, Blocks.SNOW_LAYER, Blocks.SNOW, Blocks.FARMLAND, Blocks.HARDENED_CLAY, Blocks.STAINED_HARDENED_CLAY, Blocks.MOSSY_COBBLESTONE };
-    EnumFacing side;
+
+    private static final Block[] isEffective = {
+        Blocks.NETHER_BRICK, Blocks.NETHERRACK, Blocks.GLOWSTONE, Blocks.IRON_BLOCK, Blocks.GOLD_BLOCK,
+        Blocks.DIAMOND_BLOCK, Blocks.LAPIS_BLOCK, Blocks.REDSTONE_BLOCK, Blocks.REDSTONE_ORE, Blocks.EMERALD_ORE,
+        Blocks.STONEBRICK, Blocks.GLASS, Blocks.STONE, Blocks.GOLD_ORE, Blocks.IRON_ORE, Blocks.COAL_ORE,
+        Blocks.COBBLESTONE, Blocks.DIAMOND_ORE, Blocks.LAPIS_ORE, Blocks.DIRT, Blocks.GRAVEL, Blocks.SAND,
+        Blocks.SANDSTONE, Blocks.SOUL_SAND, Blocks.CLAY, Blocks.GRASS, Blocks.SNOW_LAYER, Blocks.SNOW,
+        Blocks.FARMLAND, Blocks.HARDENED_CLAY, Blocks.STAINED_HARDENED_CLAY, Blocks.MOSSY_COBBLESTONE
+    };
+
+    // Note: In Minecraft, Items are singletons. Storing 'side' here can be
+    // glitchy in multiplayer, but it's the standard way for 1.12.2 AoE tools.
+    private EnumFacing side = EnumFacing.DOWN;
     public int searchCost = 1000;
     public int hitCost = 400;
 
     public ItemRockbreakerDrill() {
-        side = EnumFacing.DOWN;
         this.efficiency = 25F;
         this.setMaxStackSize(1);
-        if (EMTConfigHandler.toolsInBore == false) {
+        if (!EMTConfigHandler.toolsInBore) {
             this.setMaxDamage(27);
-        }
-        else {
+        } else {
             this.setMaxDamage(2571);
         }
         maxCharge = 1000000;
         transferLimit = 1000;
         tier = 3;
     }
+
     private boolean isEffectiveAgainst(Block block) {
-        for (int var3 = 0; var3 < isEffective.length; var3++) {
-            if (isEffective[var3] == block) {
-                return true;
-            }
+        for (Block b : isEffective) {
+            if (b == block) return true;
         }
         return false;
     }
 
     @Override
     public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
-        RayTraceResult rayTraceResult = BlockUtils.getTargetBlock(player.world,player,true);
-       if(rayTraceResult!=null&&rayTraceResult.typeOfHit== RayTraceResult.Type.BLOCK){
-           side = rayTraceResult.sideHit;
-       }
-
+        // Trace the block side before it's destroyed so we know which way the 3x3 face is
+        RayTraceResult rayTraceResult = BlockUtils.getTargetBlock(player.world, player, false);
+        if (rayTraceResult != null && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK) {
+            side = rayTraceResult.sideHit;
+        }
         return super.onBlockStartBreak(itemstack, pos, player);
     }
 
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
+        int actualCost = EMTConfigHandler.toolsInBore ? 1 : 350;
 
-        if (EMTConfigHandler.toolsInBore == false) {
-            cost = 350;
-        }
-        else {
-            cost = 1;
-        }
+        // 1. Handle Sneaking (Disable AoE)
         if (entityLiving.isSneaking()) {
-            if (ElectricItem.manager.canUse(stack, cost)) {
-                ElectricItem.manager.use(stack, cost, entityLiving);
-            }
+            ElectricItem.manager.use(stack, actualCost, entityLiving);
             return true;
         }
-        Block b = state.getBlock();
 
-        if (ForgeHooks.isToolEffective(worldIn, pos, stack) || isEffectiveAgainst(b)) {
+        // 2. Check if the initial block was valid for the tool
+        if (ForgeHooks.isToolEffective(worldIn, pos, stack) || isEffectiveAgainst(state.getBlock())) {
+
+            // Iterate in a 3x3 pattern perpendicular to the side hit
             for (int aa = -1; aa <= 1; aa++) {
                 for (int bb = -1; bb <= 1; bb++) {
-                    int xx = 1;
-                    int yy = 1;
-                    int zz = 1;
-                    if (side == EnumFacing.UP) {
-                        xx = aa;
-                        zz = bb;
-                    }
-                    else if (side == EnumFacing.SOUTH) {
-                        xx = aa;
-                        yy = bb;
-                    }
-                    else {
-                        zz = aa;
-                        yy = bb;
-                    }
-                    Block b1 = state.getBlock();
-                    if (!ForgeHooks.isToolEffective(worldIn, pos, stack) && !isEffectiveAgainst(b1)) {
-                        continue;
-                    }
-                    if (ElectricItem.manager.canUse(stack, cost)) {
-                        ElectricItem.manager.use(stack, cost, entityLiving);
-                    }
-                    worldIn.setBlockToAir(new BlockPos(pos.getX() + xx, pos.getY() + yy, pos.getZ() + zz));
 
+                    // Skip the center block because Vanilla/Forge already destroyed it
+                    if (aa == 0 && bb == 0) continue;
+
+                    BlockPos targetPos;
+
+                    // Determine which axis to spread based on the face hit
+                    if (side.getAxis() == EnumFacing.Axis.Y) {
+                        targetPos = pos.add(aa, 0, bb);
+                    } else if (side.getAxis() == EnumFacing.Axis.Z) {
+                        targetPos = pos.add(aa, bb, 0);
+                    } else { // X Axis
+                        targetPos = pos.add(0, aa, bb);
+                    }
+
+                    IBlockState targetState = worldIn.getBlockState(targetPos);
+
+                    // Only break the block if the drill is effective against it
+                    if (ForgeHooks.isToolEffective(worldIn, targetPos, stack) || isEffectiveAgainst(targetState.getBlock())) {
+                        if (ElectricItem.manager.canUse(stack, actualCost)) {
+                            ElectricItem.manager.use(stack, actualCost, entityLiving);
+
+                            // Use Thaumcraft's harvestBlock to handle drops, XP, and events properly
+                            BlockUtils.harvestBlock(worldIn, (EntityPlayer) entityLiving, targetPos);
+                        }
+                    }
                 }
             }
         }
         return true;
     }
 
-
-
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         ItemStack itemStack = player.getHeldItem(hand);
-        if (!player.isSneaking()) {
+
+        // Sneak + Right Click logic (Sound/Energy use)
+        if (player.isSneaking()) {
+            ElectricItem.manager.use(itemStack, searchCost, player);
+            worldIn.playSound(null, pos, SoundsTC.wandfail, SoundCategory.PLAYERS, 0.2f, 0.2f + worldIn.rand.nextFloat() * 0.2f);
+            return EnumActionResult.SUCCESS;
+        } else {
             for (int i = 0; i < player.inventory.mainInventory.size(); i++) {
                 ItemStack torchItem = player.inventory.mainInventory.get(i);
                 if (torchItem == ItemStack.EMPTY || !Objects.requireNonNull(torchItem.getItem().getRegistryName()).getResourcePath().contains("torch")) {
                     continue;
                 }
-
                 Item item = torchItem.getItem();
                 if(!(item instanceof ItemBlock)){
                     continue;
@@ -140,24 +143,15 @@ public class ItemRockbreakerDrill extends ItemThaumiumDrill {
                 if (player.capabilities.isCreativeMode) {
                     torchItem.setItemDamage(oldMeta);
                 }
-
-
             }
         }
-      else{
-          ElectricItem.manager.use(itemStack,searchCost,player);
 
-              worldIn.playSound(pos.getX()+0.5d,pos.getY()+0.5d,pos.getZ()+0.5d, SoundsTC.wandfail, SoundCategory.MASTER,0.2f,0.2f+worldIn.rand.nextFloat()*0.2f,true);
-
-            return EnumActionResult.SUCCESS;
-         }
-      return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-
+        return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
     }
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
-        if (!((Entity) (player)).world.isRemote && (!(entity instanceof EntityPlayer))) {
+        if (!player.world.isRemote && !(entity instanceof EntityPlayer)) {
             entity.setFire(2);
         }
         return super.onLeftClickEntity(stack, player, entity);

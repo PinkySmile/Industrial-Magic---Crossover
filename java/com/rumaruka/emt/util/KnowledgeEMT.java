@@ -117,7 +117,7 @@ public class KnowledgeEMT  {
             .buildAndRegister();
 
         new REB()
-            .setBaseInfo("EMT.ARMORS", "armor", -4, 0, new ItemStack(EMTItems.quantumgoggles))
+            .setBaseInfo("EMT.ARMORS_G", "armor", -4, 1, new ItemStack(EMTItems.quantumgoggles))
             .setMeta(ResearchEntry.EnumResearchMeta.HIDDEN, ResearchEntry.EnumResearchMeta.HEX)
             .setStages(
                 new RSB()
@@ -126,10 +126,26 @@ public class KnowledgeEMT  {
                     .build(),
                 new RSB()
                     .setText("research_stage." + emt.MOD_ID + ":armor.2")
-                    .setRecipes("emt:featherwing","emt:thaumiumwing","EMT.nanoW","EMT.qW")
+                    .setRecipes("EMT.electricgoggles","EMT.nanoGOR","EMT.qGOR")
                     .build()
             )
-            .setParents("EMT.WINGS_B")
+            .setParents("EMT.WINGS")
+            .buildAndRegister();
+
+        new REB()
+            .setBaseInfo("EMT.ARMORS_B", "armor", -4, -1, new ItemStack(EMTItems.quantumbootstraveller))
+            .setMeta(ResearchEntry.EnumResearchMeta.HIDDEN, ResearchEntry.EnumResearchMeta.HEX)
+            .setStages(
+                new RSB()
+                    .setText("research_stage." + emt.MOD_ID + ":armor.1")
+                    .setKnow(new ResearchStage.Knowledge(IPlayerKnowledge.EnumKnowledgeType.OBSERVATION, ResearchCategories.getResearchCategory("ARTIFICE"), 1))
+                    .build(),
+                new RSB()
+                    .setText("research_stage." + emt.MOD_ID + ":armor.2")
+                    .setRecipes("EMT.ebot","EMT.nanoBOT","EMT.qBOT")
+                    .build()
+            )
+            .setParents("EMT.WINGS")
             .buildAndRegister();
 
 

@@ -133,12 +133,12 @@ tile.solar_earthtriplecompressed.name=Earth Infused Triple Compressed Solar Pane
 
 #=============Thaumonomicon Texts=============
 research_name.emt:emt=Electro-Magic Tools aka Industrial Magic
-research_stage.emt:emt.1=Magic and Industrial? It`s possible?
-research_stage.emt:emt.2=Yep, it`s working, so!! What I do with research?
+research_stage.emt:emt.1=Magic and Industrial? It's possible?
+research_stage.emt:emt.2=Yep, it's working, so!! What I do with research?
 
 research_name.emt:wings_b=Start for Wings
 research_stage.emt:wings_b.1=I make new material for wings.
-research_stage.emt:wings_b.2=Yes, I`m write recipe and I make wings!
+research_stage.emt:wings_b.2=Yes, I'm write recipe and I make wings!
 
 research_name.emt:wings=WINGS!
 research_stage.emt:wings.1=I'm pilot! (Recipe begin wings).

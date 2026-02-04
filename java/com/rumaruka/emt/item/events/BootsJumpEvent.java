@@ -27,15 +27,15 @@ public class BootsJumpEvent {
 
                 if (item instanceof ItemQuantumBootsTraveller) {
                     if(ElectricItem.manager.use(stack, 10000, player)) {
-                        player.motionY += 0.75f;
+                        player.motionY += 1.05f;
                     }
                 } else if (item instanceof ItemNanoBootsTraveller) {
                     if(ElectricItem.manager.use(stack, 1000, player)) {
-                        player.motionY += 0.5f;
+                        player.motionY += 0.75f;
                     }
                 } else if (item instanceof ItemElectricBootsTraveller) {
                     if (ElectricItem.manager.use(stack, 100, player)) {
-                        player.motionY += 0.25f;
+                        player.motionY += 0.5f;
                     }
                 }
             }
